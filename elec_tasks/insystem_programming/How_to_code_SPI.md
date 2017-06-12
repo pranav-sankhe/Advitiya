@@ -109,7 +109,7 @@ We only discussed about the register description, hardware connections etc. of t
 
 #### Enabling SPI on Master
 
-''' c
+``` c
 
 // Initialize SPI Master Device (with SPI interrupt)
 void spi_init_master (void)
@@ -126,9 +126,9 @@ void spi_init_master (void)
     sei();
 }
 
-'''
+```
 
-''' c
+``` c
 
 Enabling SPI on Slave
 // Initialize SPI Slave Device
@@ -138,9 +138,9 @@ void spi_init_slave (void)
     SPCR = (1<<SPE);   //Enable SPI
 }
 
-'''
+```
 
-''' c
+``` c
 Sending and Receiving Data
 //Function to send and receive data for both master and slave
 unsigned char spi_tranceiver (unsigned char data)
@@ -155,4 +155,4 @@ unsigned char spi_tranceiver (unsigned char data)
     return(SPDR);
 }
 
-'''
+```
