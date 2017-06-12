@@ -1,4 +1,4 @@
-#C Functions for Reading and Writing to Flash Memory
+# C Functions for Reading and Writing to Flash Memory
 
 The Atmel AVR devices have a feature called Self programming Program memory. This feature enables an AVR device to reprogram the Flash memory while executing the program. Such a feature is helpful for applications that must self-update firmware or store parameters in Flash.
 
