@@ -1,4 +1,4 @@
-# Astronomical Image Filtering
+# Astronomical Image Processing
  
 ## Astronomical Images
  
@@ -30,6 +30,7 @@ You will have captured multiple images (or a video) of your target object. All f
 Manual: You have to click in exactly the same place (e.g. a star) in each image to set the alignment point.
 Centroid: You click on the same star in each image and the software will try to align the centre of the star.
 Automatic: (e.g using FFT algorithm) you select a suitable star or image feature and the software will do its best to align the feature on each image.
+
 Some software will allow you to select two points in each image and will rotate the images to compensate for images taken using an alt/azimuth mounted telescope. Registax allows you to select multiple points in the image and can align different areas of the image differently. This can be quite useful when poor "seeing" has caused areas of the image to shimmer.
 
 **Note** : For video, manual alignment is usually impractical because of the number of frames. 
@@ -42,7 +43,7 @@ Once the images have been aligned then they can be stacked by:
  
 2. **Adding (Sum)** : The images are added together and pixel values are the sum of the appropriate pixel on all the images. Generally this is not a good idea as bright spots (e.g. stars) will add up to more than the maximum value of a pixel causing distortion or "white out" or areas of the image. But if you have a limited number of images and their maximum pixel values are low then adding can be a useful because it will give a greater range of pixel values for subsequent contrast enhancement.
  
-3 **Drizzle** : This is a technique designed by NASA to sharpen images acquired by the Hubble Space Telescope. The objective is to combine the information in multiple images to get a better resolution than the number of pixels in the camera. It is only relevant when the resolution of the telescope is better than the resolution of the CCD. We will go into detailed description of the process somewhere down the lane. The output image is larger than the input image thus possibly may have better resolution than individual input images.     
+3.**Drizzle** : This is a technique designed by NASA to sharpen images acquired by the Hubble Space Telescope. The objective is to combine the information in multiple images to get a better resolution than the number of pixels in the camera. It is only relevant when the resolution of the telescope is better than the resolution of the CCD. We will go into detailed description of the process somewhere down the lane. The output image is larger than the input image thus possibly may have better resolution than individual input images.     
 
 
 ## Contrast and Colour
@@ -67,7 +68,7 @@ As the sensitivity of the CCD is different through the three filters we need to 
 
 **Theoretical**: If we know the sensitivity of the CCD through each of the filters then we can combine the images in the correct proportion.
 **White Balance**: We can adjust the image so that things that we know should be white or grey appear as such.
-Most software will provide the ability to to combine R,G & B images and will allow you to adjust the balance or will try to do so automatically using a "white balance" control.
+Most software will provide the ability to combine R,G & B images and will allow you to adjust the balance or will try to do so automatically using a "white balance" control.
 
 ### Luminance (LRGB)
 

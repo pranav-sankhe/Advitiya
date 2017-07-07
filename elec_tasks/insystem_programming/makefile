@@ -1,4 +1,4 @@
-PROJECT = script
+PROJECT = write_hex
 OBJDIR = build
 
 SRC = $(PROJECT).c
