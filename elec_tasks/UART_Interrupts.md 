@@ -1,0 +1,30 @@
+# UART Interrupts other than RX interrupt 
+
+
+## Transmitter Interrupt: 
+
+It means that when the transmit buffer goes from full to empty, it generates an interrupt. This is useful if you want to send a string of characters without having to check regularly to see if the transmit buffer is empty.
+You set up the transmit data string in a RAM buffer, then either send the first character manually, or cause a TX interrupt by setting a bit. The TX int routine is set up to know where to pick up the transmit data, and how many characters. At the end of every character there's another TX interrupt, and the routine gets the next character and sends it out automatically. After the last character there is one more interrupt, on which the routine does nothing as there is no more data, so it shuts down automatically until next time it's needed.\\
+
+</br>
+
+The TXC Flag is useful in half-duplex communication interfaces (like the RS485 standard), where a transmitting application must enter Receive mode and free the communication bus immediately after completing the transmission.
+
+#### Implementation: 
+In, UCSRB (USART Control and Status Register B (8-bit)) 
+
+**Bit 6: TXCIE – TX Complete Interrupt Enable:**  Writing this bit to one enables interrupt on the _TXC_ Flag. A USART Transmit Complete interrupt will be generated only if the _TXCIE_ bit is written to one, the Global Interrupt Flag in _SREG_ is written to one and the _TXC_ bit in _UCSRA_ is set. The result is that whenever any data is sent, an interrupt will be fired by the CPU.
+
+
+## Data Register empty Interrupt
+
+The Data Register Empty (_UDRE_) Flag indicates whether the transmit buffer is ready to receive new data. This bit is set when the transmit buffer is empty, and cleared when the transmit buffer contains data to be transmitted that has not yet been moved into the Shift Register. For compatibility with future devices, always write this bit to zero when writing the _UCSRA_ Register.
+
+</br>
+
+When the Data Register empty Interrupt Enable (_UDRIE_) bit in _UCSRB_ is written to one, the _USART_ Data Register Empty Interrupt will be executed as long as _UDRE_ is set (obviously, provided that theglobal interrupts are enabled). _UDRE_ is cleared by writing _UDR_. When interrupt-driven data transmission is used, the Data Register empty Interrupt routine must either write new data to UDR in order to clear _UDRE_ or disable the Data Register empty Interrupt, otherwise a new interrupt will occur once the interrupt routine terminates.
+
+#### Implementation: 
+In, _UCSRB_ (_USART_ Control and Status Register B (8-bit)) 
+
+**Bit 5: UDRIE – USART Data Register Empty Interrupt Enable:** Writing this bit to one enables interrupt on the _UDRE_ Flag. A Data Register Empty interrupt will be generated only if the _UDRIE_ bit is written to one, the Global Interrupt Flag in _SREG_ is written to one and the _UDRE_ bit in _UCSRA_ is set. The result is that whenever the transmit buffer is empty, an interrupt will be fired by the CPU.
